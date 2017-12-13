@@ -1,0 +1,16 @@
+RewriteEngine on
+RewriteBase /
+
+### TODO allow user to visit site.com/1.0.0 without getting the query string appended
+### f.e. site.com/1.0.0/?url=/1.0.0/index.php&version=1.0.0
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(\d+.\d+.\d+)/instances/(\w+)/? /$1/index.php?version=$1&instance=$2 [QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(\d+.\d+.\d+)/? /$1/index.php?version=$1 [QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(images|photos|css|js|robots\.txt)
+RewriteRule ^(.*)/?$ /1.0.0/index.php?url=$1 [QSA,L]
