@@ -74,6 +74,7 @@ class AuthorizeController extends Authorize {
                             $dbTranArr[] = $db_transaction['transaction_id'];
                         }
                     }
+					
                     //checking whether transaction id already exists in the database if it exists then nothing should be done
                     if (!in_array($transaction_id, $dbTranArr)) {
 
